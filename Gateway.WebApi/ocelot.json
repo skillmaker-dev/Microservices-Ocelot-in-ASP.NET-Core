@@ -10,7 +10,14 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/product",
-      "UpstreamHttpMethod": [ "POST", "GET" ]
+      "UpstreamHttpMethod": [ "POST", "GET" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 2,
+        "Limit": 2
+      }
     },
     {
       "DownstreamPathTemplate": "/api/product/{id}",
@@ -48,5 +55,11 @@
       "UpstreamPathTemplate": "/gateway/customer/{id}",
       "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     }
-  ]
+  ],
+  "GlobalConfiguration": {
+    "RateLimitOptions": {
+      "QuotaExceededMessage": "You want more API, pay some money !!!!",
+      "HttpStatusCode": 429
+    }
+  }
 }
